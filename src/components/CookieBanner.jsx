@@ -7,15 +7,18 @@ const KEY = 'sca_consent';
 // Elegant slide-up consent banner. Defaults are 'denied' (set in index.html via
 // Consent Mode v2); accepting updates consent to 'granted' and persists the
 // choice in localStorage so the banner does not reappear.
+//
+// The banner renders into the prerendered HTML by default (visible = true) so
+// crawlers and Google Ads policy checkers that do NOT execute JavaScript can see
+// it. On the client, if the visitor has already made a choice we hide it.
 export default function CookieBanner() {
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(true);
 
   useEffect(() => {
     try {
-      const stored = localStorage.getItem(KEY);
-      if (!stored) setVisible(true);
+      if (localStorage.getItem(KEY)) setVisible(false);
     } catch (e) {
-      setVisible(true);
+      /* storage unavailable — keep banner visible */
     }
   }, []);
 
