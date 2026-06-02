@@ -1,0 +1,18 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# Pre-rendered HTML exists for every route, so we serve files directly.
+# Unknown paths fall back to the pre-rendered 404 page with a 404 status.
+[[redirects]]
+  from = "/*"
+  to = "/404/index.html"
+  status = 404
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

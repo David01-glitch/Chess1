@@ -1,0 +1,27 @@
+{
+  "name": "Senior Chess Academy",
+  "description": "A chess strategy and brain-training blog for older adults. Pre-rendered static HTML served by Express.",
+  "repository": "https://github.com/seniorchessacademy/website",
+  "keywords": ["chess", "seniors", "brain-health", "react", "vite", "ssg", "express"],
+  "env": {
+    "NODE_ENV": {
+      "description": "Node environment.",
+      "value": "production"
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "basic"
+    }
+  },
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ],
+  "scripts": {
+    "postdeploy": "echo 'Senior Chess Academy deployed.'"
+  },
+  "stack": "heroku-24"
+}
